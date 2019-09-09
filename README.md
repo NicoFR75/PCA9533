@@ -4,7 +4,7 @@ Arduino library for the PCA9533 4 port LED dimmer
 # Added on 09/09/2019
 Function to read the input register
 
-Test file is testing different prescaler frequencies :
+Test file (main.cpp) is testing different prescaler frequencies :
  - PSC0 is 152Hz
  - PSC1 is 5Hz
  
