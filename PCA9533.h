@@ -35,12 +35,12 @@ namespace Pca9533 {
     const byte COM_SUCCESS      = 0x00;
 
     typedef enum:byte {
-        REG_INPUT   = 0x10,     // Default :: INPUT REGISTER
-        REG_PSC0    = 0x11,     // FREQUENCY PRESCALER 0
-        REG_PWM0    = 0x12,     // PWM REGISTER 0
-        REG_PSC1    = 0x13,     // FREQUENCY PRESCALER 1
-        REG_PWM1    = 0x14,     // PWM REGISTER 1
-        REG_LED     = 0x15      // LED SELECTOR
+        REG_INPUT   = 0x00,     // Default :: INPUT REGISTER
+        REG_PSC0    = 0x01,     // FREQUENCY PRESCALER 0
+        REG_PWM0    = 0x02,     // PWM REGISTER 0
+        REG_PSC1    = 0x03,     // FREQUENCY PRESCALER 1
+        REG_PWM1    = 0x04,     // PWM REGISTER 1
+        REG_LED     = 0x05      // LED SELECTOR
     } reg_ptr_t;
 
     typedef enum:byte {
@@ -56,11 +56,6 @@ namespace Pca9533 {
         IO2 = 4,
         IO3 = 6
     } pin_t;
-
-    typedef enum:byte {
-        ALL_ON   = 0x55,
-        ALL_OFF  = 0x00
-    } mode_t;
 
     typedef enum:byte {
         IO_LOW  = 0,
@@ -81,14 +76,14 @@ namespace Pca9533 {
             byte port_setting = B00001110;
             byte ping();
             bool init();
-            void setMode(pin_t pin, led_out_mode_t newMode);
-            void setMode(mode_t newMode);
+            void setMODE(pin_t pin, led_out_mode_t newMode);
             void setPWM(reg_ptr_t pwmPort, int pwmValue);
             void setPSC(reg_ptr_t pscPort, int pscValue);
+            state_t getINPUT(pin_t pin);
          private:
             byte _comBuffer;
-            void setReg(reg_ptr_t ptr, byte newSetting);
             void initCall(reg_ptr_t regPtr);
+            void setReg(reg_ptr_t ptr, byte newSetting);
             void endCall();            
     };
 }
