@@ -13,7 +13,7 @@ LED2 is using PSC0 and dimming from 0% to 100%
 LED3 is using PSC0 and dimming from 100% to 0%
 LED4 is used as GPIO
 
-All logs are sent throught serial.
+All logs are sent through serial.
 
 
 Datasheet:
