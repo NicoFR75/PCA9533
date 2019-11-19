@@ -13,6 +13,14 @@
   You should have received a copy of the GNU Lesser General Public
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+  Edited by NicoFR75 (November 2019):
+  - Added getReg method to read register
+  - Added getAllReg method to read all register using AutoIncrement flag functionnality of the chip (can't start from INPUT reg, have to start from another register)
+  - Added getINPUTS method to get GPIO values
+  - Changed setMODE to read current register status before apply new port mode (instead of use port_setting which is hard coded at init stage)
+  - Renamed some variables to make it more readable
+  
 */
 
 #if 1
@@ -40,7 +48,8 @@ namespace Pca9533 {
         REG_PWM0    = 0x02,     // PWM REGISTER 0
         REG_PSC1    = 0x03,     // FREQUENCY PRESCALER 1
         REG_PWM1    = 0x04,     // PWM REGISTER 1
-        REG_LED     = 0x05      // LED SELECTOR
+        REG_LED     = 0x05,     // LED SELECTOR
+        REG_AUTO    = 0x11      // FOR READING ALL RESGITER, STARTING FROM PSC0
     } reg_ptr_t;
 
     typedef enum:byte {
@@ -73,18 +82,21 @@ namespace Pca9533 {
          public:
             PCA9533();
             ~PCA9533();
-            byte port_setting = B00001110;
+            byte port_init = 0x00;
             byte ping();
             bool init();
             void setMODE(pin_t pin, led_out_mode_t newMode);
             void setPWM(reg_ptr_t pwmPort, int pwmValue);
             void setPSC(reg_ptr_t pscPort, int pscValue);
             state_t getINPUT(pin_t pin);
+            
          private:
             byte _comBuffer;
             void initCall(reg_ptr_t regPtr);
-            void setReg(reg_ptr_t ptr, byte newSetting);
-            void endCall();            
+            void setReg(reg_ptr_t ptr, byte newSetting);  
+            byte getReg(reg_ptr_t regPtr);
+            void getAllReg(byte (&reg)[6]);
+            void endCall();     
     };
 }
 
