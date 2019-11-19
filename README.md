@@ -1,12 +1,14 @@
 # PCA9533
 Arduino library for the PCA9533 4 port LED dimmer
 
+
 # Added on 20/11/2019
  - Added the getReg method to read register
  - Added getAllReg method to read all register using AutoIncrement flag functionnality of the chip (can't start from INPUT reg, have to start from another register) <= STILL NEED THE PUBLIC METHOD
  - Rewrite getINPUTS method to get GPIO values (split the method in a public/private methods with using byte shifting and mask instead of switch/case)
  - Changed setMODE to read current register status before apply new port mode (instead of use port_setting which is hard coded at init stage)
  - Renamed some variables to make it more readable
+  
   
 # Added on 09/09/2019
 - Method to read the input register
