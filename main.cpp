@@ -7,11 +7,13 @@
 #include <PCA9533.h>
 
 PCA9533 pca9533;                              // construct a new PCA9533 instance
+int done = 0;
 
 void setup()
 {
   // Initialise I2C communication
   Wire.begin();
+  Wire.setClock(400000);
   // Initialise serial communication
   Serial.begin(115200);
   delay(300);
@@ -33,11 +35,14 @@ void setup()
 
 void loop()
 {
-  
-  pca9533.setMODE(IO0, LED_MODE_OFF);
-  pca9533.setMODE(IO1, LED_MODE_OFF);
-  pca9533.setMODE(IO2, LED_MODE_OFF);
-  delay(50);
+  Serial.println("Press G and Enter to continue");
+  while(done == 0) {
+    while (Serial.available() > 0) {
+      if (Serial.read() == 'G') {
+        done = 1;
+      }
+    }
+  }
   
   // Test LED1
   Serial.println("Blinking LED1 at 5Hz");
@@ -45,7 +50,7 @@ void loop()
   pca9533.setPWM(REG_PWM1, 64);
   delay(2000);  
   pca9533.setMODE(IO0, LED_MODE_OFF);
-  delay(50);
+  delay(100);
   
   // Test LED2
   Serial.println("Dimming LED2 from 0% to 100%");
@@ -55,7 +60,7 @@ void loop()
     delay(40);  
   }
   pca9533.setMODE(IO1, LED_MODE_OFF);
-  delay(50);
+  delay(100);
   
   // Test LED3
   Serial.println("Testing LED3 from 100% to 0%");
@@ -65,7 +70,7 @@ void loop()
     delay(40);  
   }
   pca9533.setMODE(IO2, LED_MODE_OFF);
-  delay(50);
+  delay(100);
   
   Serial.print("IO0 is : ");
   Serial.print(pca9533.getINPUT(IO0));
@@ -80,6 +85,7 @@ void loop()
   Serial.print(pca9533.getINPUT(IO3));
   Serial.println("");
 
+  done = 0;
 } 
 
 
