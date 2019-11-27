@@ -6,7 +6,7 @@
         	"espressif"
     	],
 		"keywords": "PCA9533, GPIO, I2C, 4-BIT, DIMMER",
-		"description": "PCA9533 Driver (4-Channel GPIO I2C Dimmer)",
+		"description": "PCA9533 Led Driver (4-Channel GPIO I2C Dimmer)",
 		"url": "https://github.com/NicoFR75/PCA9533",
 		"downloadUrl": "https://github.com/NicoFR75/PCA9533/archive/master.zip",
 		"authors":
