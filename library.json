@@ -1,11 +1,11 @@
 {
-		"name": "PCA9533",
-		"keywords": "PCA9533, GPIO, I2C, 4-BIT, DIMMER",
-		"description": "PCA9533 Led Driver (4-Channel GPIO I2C Dimmer)",
-		"repository":
-		{
-		    "type": "git",
-		    "url": "https://github.com/NicoFR75/PCA9533.git"
-		},
-		"version": "0.2"
+	"name": "PCA9533",
+	"keywords": "PCA9533, GPIO, I2C, 4-BIT, DIMMER",
+	"description": "PCA9533 Led Driver (4-Channel GPIO I2C Dimmer)",
+	"repository":
+	{
+	    "type": "git",
+	    "url": "https://github.com/NicoFR75/PCA9533.git"
+	},
+	"version": "0.2"
 }
